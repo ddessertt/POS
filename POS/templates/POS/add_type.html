@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1>เพิ่มประเภทสินค้า</h1>
+        <br/>
+         <form class="nt-5" method="POST" action="{% url 'add_type' %}">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="name">ชื่อประเภท:</label>
+                <input type="text" class="form-control" name="name" id="name" value="{{product_type.name}}" required>
+            </div>
+            <div class="form-group">
+                    <label for="description">คำอธิบาย:</label>
+                    <textarea class="form-control" name="description" id="description" value="{{product_type.description}}" row="3"></textarea>
+            </div>
+            {% csrf_token %}
+            {% if message %}<p class="text-success text-center">{{ message }}</p>{% endif %}
+            <button type="submit" class="btn btn-primary ml-3">บันทึก</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

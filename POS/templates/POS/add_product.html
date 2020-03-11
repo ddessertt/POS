@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1>เพิ่มข้อมูลสินค้า</h1>
+        <br/>
+        {% if product.id %}
+            <form class="nt-5" method="POST" action="{% url 'product_edit' product.id %}">
+        {% else %}
+            <form class="nt-5" method="POST" action="{% url 'add' %}">
+        {% endif %}
+        {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">ชื่อสินค้า:</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{product.name}}" required>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="name">ประเภท:</label>
+                            <select id="Type" class="custom-select" name="Type">
+                                    {% for ty in po_type %}
+                                    <option value="{{ ty.id }}" {% if product_type.name == ty.name %}selected{% endif %}>{{ ty.name }}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="price">ราคา:</label>
+                            <input type="number" class="form-control" name="price" id="price" value="{{product.price}}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label for="description">คำอธิบาย:</label>
+                        <textarea class="form-control" name="description" id="description" value="{{product.description}}" row="3"></textarea>
+                </div>
+                {% csrf_token %}
+                {% if message %}<p class="text-success text-center">{{ message }}</p>{% endif %}
+                <button type="submit" class="btn btn-primary ml-3">บันทึก</button>
+            </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

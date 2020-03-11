@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <h1>รายการสินค้าที่มี</h1>
+                <br/><br/>
+                <form class="form-inline" method="GET">
+                    <div class="form-group">
+                        <label for="search_product">ค้นหา:</label>
+                        <input type="text" class="form-control ml-3" id="search_product" 
+                            name="search_product" placeholder="ชื่อสินค้า" value="{{search_product}}">
+                        <label for="search_type">ค้นหาประเภท:</label>
+                        <select id="select_type" class="custom-select mr-sm-2">
+                            {% for pt in po_type %}
+                            <option value="{{ pt.id }}">{{ pt.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        
+                    </div>
+
+                    <button type="submit" class="btn btn-info">ค้นหา</button>
+                </form>
+                <br>
+                <br>
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ชื่อ</th>
+                            <th scope="col">ประเภท</th>
+                            <th scope="col">ราคา</th>
+                            <th scope="col">กดลงตะกร้าสิ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ds in pos %}
+                        <tr>
+                            <td>{{ ds.name }}</td>
+                            <td>{{ ds.Type }}</td>
+                            <td>{{ ds.price }}</td>
+                            <td>
+                                <a href="">
+                                    <div class="" id="">เพิ่มลงตะกร้า</div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <h2>ตะกร้า</h2>
+                <table class="table jumbotron">
+                    <thead>
+                        <tr>
+                            <th scope="col">ชื่อ</th>
+                            <th scope="col">ประเภท</th>
+                            <th scope="col">ราคา</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-success btn-block">ขาย</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
